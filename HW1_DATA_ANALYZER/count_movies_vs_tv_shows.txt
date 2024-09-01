@@ -1,0 +1,5 @@
+=== Count of Movies vs TV Shows ===
+Type                      Count
+==============================
+Movies                    6131
+TV Shows                  2676
