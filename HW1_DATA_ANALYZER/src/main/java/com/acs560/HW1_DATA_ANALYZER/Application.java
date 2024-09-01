@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import com.opencsv.CSVWriter;
 
 /**
  * Application for analyzing Netflix data from a CSV file. Provides
@@ -95,11 +94,11 @@ public class Application {
 
 		}
 		StringBuilder textResult = new StringBuilder("=== Count of Movies vs TV Shows ===\n");
-	    textResult.append(String.format("%-25s %s%n", "Type", "Count")); // Header
-	    textResult.append("==============================\n");
-	    textResult.append(String.format("%-25s %d%n", "Movies", movieCount));
-	    textResult.append(String.format("%-25s %d%n", "TV Shows", tvShowCount));
-	    writeToTextFile(COUNT_FILE, textResult.toString());
+		textResult.append(String.format("%-25s %s%n", "Type", "Count")); // Header
+		textResult.append("==============================\n");
+		textResult.append(String.format("%-25s %d%n", "Movies", movieCount));
+		textResult.append(String.format("%-25s %d%n", "TV Shows", tvShowCount));
+		writeToTextFile(COUNT_FILE, textResult.toString());
 	}
 
 	/**
@@ -112,32 +111,32 @@ public class Application {
 	 */
 
 	public static void avgMovies(List<String[]> allData) {
-	    Map<String, Integer> moviesPerYear = new HashMap<>();
-	    int totalMovies = 0;
+		Map<String, Integer> moviesPerYear = new HashMap<>();
+		int totalMovies = 0;
 
-	    for (String[] row : allData) {
-	        String type = row[1];
-	        String releaseYear = row[7];
+		for (String[] row : allData) {
+			String type = row[1];
+			String releaseYear = row[7];
 
-	        if (type != null && type.equalsIgnoreCase("Movie")) {
-	            totalMovies++;
-	            moviesPerYear.put(releaseYear, moviesPerYear.getOrDefault(releaseYear, 0) + 1);
-	        }
-	    }
+			if (type != null && type.equalsIgnoreCase("Movie")) {
+				totalMovies++;
+				moviesPerYear.put(releaseYear, moviesPerYear.getOrDefault(releaseYear, 0) + 1);
+			}
+		}
 
-	    StringBuilder textResult = new StringBuilder("=== Average Movies per Year ===\n");
-	    textResult.append(String.format("%-25s %s%n", "Total Movies:", "Average Movies per Year")); // Header
-	    textResult.append("==============================\n");
+		StringBuilder textResult = new StringBuilder("=== Average Movies per Year ===\n");
+		textResult.append(String.format("%-25s %s%n", "Total Movies:", "Average Movies per Year")); // Header
+		textResult.append("==============================\n");
 
-	    if (moviesPerYear.size() > 0) {
-	        double average = (double) totalMovies / moviesPerYear.size();
-	        textResult.append(String.format("%-25d %.2f%n", totalMovies, average));
-	    } else {
-	        textResult.append(String.format("%-25s %s%n", "No movies found.", ""));
-	    }
+		if (moviesPerYear.size() > 0) {
+			double average = (double) totalMovies / moviesPerYear.size();
+			textResult.append(String.format("%-25d %.2f%n", totalMovies, average));
+		} else {
+			textResult.append(String.format("%-25s %s%n", "No movies found.", ""));
+		}
 
-	    // Write the formatted result to a text file
-	    writeToTextFile(AVG_FILE, textResult.toString());
+		// Write the formatted result to a text file
+		writeToTextFile(AVG_FILE, textResult.toString());
 	}
 
 	/**
@@ -168,13 +167,13 @@ public class Application {
 		}
 
 		StringBuilder textResult = new StringBuilder("=== Unique Countries and their Counts ===\n");
-	    textResult.append(String.format("%-25s %s%n", "Country", "Count")); // Header
-	    textResult.append("==============================\n");
-	    for (Map.Entry<String, Integer> entry : countryCounts.entrySet()) {
-	        textResult.append(String.format("%-25s %d%n", entry.getKey(), entry.getValue()));
-	    }
+		textResult.append(String.format("%-25s %s%n", "Country", "Count")); // Header
+		textResult.append("==============================\n");
+		for (Map.Entry<String, Integer> entry : countryCounts.entrySet()) {
+			textResult.append(String.format("%-25s %d%n", entry.getKey(), entry.getValue()));
+		}
 
-	    writeToTextFile(COUNTRIES_FILE, textResult.toString());
+		writeToTextFile(COUNTRIES_FILE, textResult.toString());
 	}
 
 	/**
@@ -198,13 +197,19 @@ public class Application {
 
 	}
 
+	/**
+	 * Writes the specified content to a text file.
+	 * 
+	 * @param fileName The name of the file to which the content will be written.
+	 * @param content  The content to be written to the file.
+	 */
 	private static void writeToTextFile(String fileName, String content) {
-	    try (FileWriter writer = new FileWriter(fileName)) {
-	        writer.write(content);
-	        System.out.println("Results written to " + fileName + "\n");
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+		try (FileWriter writer = new FileWriter(fileName)) {
+			writer.write(content);
+			System.out.println("Results written to " + fileName + "\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
