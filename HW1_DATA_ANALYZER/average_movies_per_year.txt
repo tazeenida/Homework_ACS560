@@ -1,0 +1,4 @@
+=== Average Movies per Year ===
+Total Movies:             Average Movies per Year
+==============================
+6131                      83.99
