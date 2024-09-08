@@ -3,7 +3,9 @@ package com.acs560.HW2_REST_API.repositories;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.acs560.HW2_REST_API.models.Movie;
@@ -22,7 +24,7 @@ public class MovieRepository {
     private static List<Movie> movies;
 
     // Get the list of movies, initializing it if needed
-    public static List<Movie> getMovies() {
+    public List<Movie> getMovies() {
         if (movies == null) {
             movies = initializeMovies();
         }
@@ -42,7 +44,8 @@ public class MovieRepository {
                         .title(row[2])        
                         .director(row[3])      
                         .type(row[1])          
-                        .releaseYear(parseYear(row[7])) 
+                        .releaseYear(parseYear(row[7]))
+                        .countries(row[5])
                         .build();
                     movies.add(movie);
                 }
@@ -115,4 +118,71 @@ public class MovieRepository {
                                  movie.getType().equalsIgnoreCase(type))
                 .collect(Collectors.toList());
     }
+    
+    public String getCountMoviesVsTVShows() {
+        List<Movie> allMovies = getMovies();
+        int movieCount = (int) allMovies.stream().filter(movie -> movie.getType().equalsIgnoreCase("Movie")).count();
+        int tvShowCount = (int) allMovies.stream().filter(movie -> movie.getType().equalsIgnoreCase("TV Show")).count();
+
+        StringBuilder result = new StringBuilder("=== Count of Movies vs TV Shows ===\n");
+        result.append(String.format("%-25s %s%n", "Type", "Count"));
+        result.append("==============================\n");
+        result.append(String.format("%-25s %d%n", "Movies", movieCount));
+        result.append(String.format("%-25s %d%n", "TV Shows", tvShowCount));
+
+        return result.toString();
+    }
+    
+    public String getAvgMovies() {
+        List<Movie> allMovies = getMovies();
+        Map<Integer, Integer> moviesPerYear = new HashMap<>();
+        int totalMovies = 0;
+
+        for (Movie movie : allMovies) {
+            if (movie.getType().equalsIgnoreCase("Movie")) {
+                totalMovies++;
+                moviesPerYear.put(movie.getReleaseYear(), moviesPerYear.getOrDefault(movie.getReleaseYear(), 0) + 1);
+            }
+        }
+
+        StringBuilder textResult = new StringBuilder("=== Average Movies per Year ===\n");
+        textResult.append(String.format("%-25s %s%n", "Total Movies:", "Average Movies per Year")); // Header
+        textResult.append("==============================\n");
+
+        if (moviesPerYear.size() > 0) {
+            double average = (double) totalMovies / moviesPerYear.size();
+            textResult.append(String.format("%-25d %.2f%n", totalMovies, average));
+        } else {
+            textResult.append(String.format("%-25s %s%n", "No movies found.", ""));
+        }
+
+        return textResult.toString();
+    }
+    
+    public String getCountries() {
+        List<Movie> allMovies = getMovies();
+        Map<String, Integer> countryCounts = new HashMap<>();
+
+        for (Movie movie : allMovies) {
+            String countries = movie.getCountries();
+
+            if (countries != null && !countries.trim().isEmpty()) {
+                String[] countryList = countries.split(",");
+                for (String country : countryList) {
+                    country = country.trim();
+                    countryCounts.put(country, countryCounts.getOrDefault(country, 0) + 1);
+                }
+            }
+        }
+
+        StringBuilder textResult = new StringBuilder("=== Unique Countries and their Counts ===\n");
+        textResult.append(String.format("%-25s %s%n", "Country", "Count"));
+        textResult.append("==============================\n");
+        for (Map.Entry<String, Integer> entry : countryCounts.entrySet()) {
+            textResult.append(String.format("%-25s %d%n", entry.getKey(), entry.getValue()));
+        }
+
+        return textResult.toString();
+    }
+
 }
