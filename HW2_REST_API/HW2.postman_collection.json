@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "10166e27-72a1-4142-aa2d-cf95c1cf31e9",
+		"name": "HW2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38200500"
+	},
+	"item": [
+		{
+			"name": "All Movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByTitle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/title/Dick%20Johnson%20Is%20Dead",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"title",
+						"Dick%20Johnson%20Is%20Dead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByDirector",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/director/Kirsten%20Johnson",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"director",
+						"Kirsten%20Johnson"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByType",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/type/movie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"type",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByreleaseYear",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/releaseYear/2010",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"releaseYear",
+						"2010"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMoviesByDirectorType",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/director/Rajiv%20Chilaka/type/movie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"director",
+						"Rajiv%20Chilaka",
+						"type",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMoviesByReleaseYearType",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/releaseYear/2010/type/movie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"releaseYear",
+						"2010",
+						"type",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMoviesByDirectorReleaseYearType",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movies/releaseYear/2010/type/movie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"releaseYear",
+						"2010",
+						"type",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "countMoviesVsTVShows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/moviesAnalyzer/countMoviesVsTVShows",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"moviesAnalyzer",
+						"countMoviesVsTVShows"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "avgMovies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/moviesAnalyzer/avgMovies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"moviesAnalyzer",
+						"avgMovies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCountries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/moviesAnalyzer/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"moviesAnalyzer",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
