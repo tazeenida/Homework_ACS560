@@ -19,5 +19,6 @@ public class Movie {
     private String director;
     private String type; 
     private int releaseYear;
+    private String countries;
 
 }

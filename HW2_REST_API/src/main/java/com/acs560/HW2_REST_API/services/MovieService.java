@@ -10,40 +10,52 @@ import java.util.List;
 @Service
 public class MovieService {
 
-    @Autowired
-    private MovieRepository movieRepository;
+	@Autowired
+	private  MovieRepository movieRepository;
 
-    public List<Movie> getAllMovies() {
-        return movieRepository.getMovies();
-    }
+	public List<Movie> getAllMovies() {
+		return movieRepository.getMovies();
+	}
 
-    public List<Movie> getMoviesByTitle(String title) {
-        return movieRepository.findByTitle(title);
-    }
+	public List<Movie> getMoviesByTitle(String title) {
+		return movieRepository.findByTitle(title);
+	}
 
-    public List<Movie> getMoviesByDirector(String director) {
-        return movieRepository.findByDirector(director);
-    }
+	public List<Movie> getMoviesByDirector(String director) {
+		return movieRepository.findByDirector(director);
+	}
 
-    public List<Movie> getMoviesByType(String type) {
-        return movieRepository.findByType(type);
-    }
+	public List<Movie> getMoviesByType(String type) {
+		return movieRepository.findByType(type);
+	}
 
-    public List<Movie> getMoviesByReleaseYear(int releaseYear) {
-        return movieRepository.findByReleaseYear(releaseYear);
+	public List<Movie> getMoviesByReleaseYear(int releaseYear) {
+		return movieRepository.findByReleaseYear(releaseYear);
+	}
+
+	public List<Movie> getMoviesByDirectorType(String director, String type) {
+		return movieRepository.findByDirectorType(director, type);
+	}
+
+	public List<Movie> getMoviesByReleaseYearType(int releaseYear, String type) {
+		return movieRepository.findByYearType(releaseYear, type);
+	}
+
+	public List<Movie> getMoviesByDirectorReleaseYearType(String director, int releaseYear, String type) {
+		return movieRepository.findByDirectorYearType(director, releaseYear, type);
+	}
+	
+	public String getCountMoviesVsTVShows() {
+        return movieRepository.getCountMoviesVsTVShows();
     }
-    
-    public List<Movie> getMoviesByDirectorType(String director, String type) {
-    	 return movieRepository.findByDirectorType(director, type);
+	
+	public String getAvgMovies() {
+        return movieRepository.getAvgMovies();
     }
-    
-    public List<Movie> getMoviesByReleaseYearType(int releaseYear, String type) {
-   	 return movieRepository.findByYearType(releaseYear, type);
-   }
-    
-    
-    
-    public List<Movie> getMoviesByDirectorReleaseYearType(String Director, int releaseYear, String type) {
-      	 return movieRepository.findByDirectorYearType(Director, releaseYear, type);
-      }
+	
+	public String getCountries() {
+        return movieRepository.getCountries();
+    }
+	
+
 }
