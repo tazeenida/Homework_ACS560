@@ -1,7 +1,7 @@
 package com.acs560.HW2_REST_API.controllers;
 
 import com.acs560.HW2_REST_API.models.Movie;
-import com.acs560.HW2_REST_API.services.MovieService;
+import com.acs560.HW2_REST_API.services.MoviesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class MovieController {
 
 	@Autowired
-	private MovieService movieService;
+	private MoviesService movieService;
 
 	/**
 	 * Retrieves the list of all movies
