@@ -1,7 +1,8 @@
 package com.acs560.HW2_REST_API.controllers;
 
 import com.acs560.HW2_REST_API.models.Movie;
-import com.acs560.HW2_REST_API.services.MovieService;
+import com.acs560.HW2_REST_API.services.MoviesAnalyzerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class MovieAnalyzerController {
 
     @Autowired
-    private MovieService movieService;
+    private MoviesAnalyzerService moviesAnalyzerService;
     
     /**
      * Gets the count of movies versus TV shows.
@@ -26,7 +27,7 @@ public class MovieAnalyzerController {
      */
     @GetMapping("/countMoviesVsTVShows")
     public ResponseEntity<String> getCountMoviesVsTVShows() {
-        String result = movieService.getCountMoviesVsTVShows();
+        String result = moviesAnalyzerService.getCountMoviesVsTVShows();
         return ResponseEntity.ok(result);
     }
     
@@ -37,7 +38,7 @@ public class MovieAnalyzerController {
      */
     @GetMapping("/avgMovies")
     public ResponseEntity<String> getAvgMovies() {
-        String result = movieService.getAvgMovies();
+        String result = moviesAnalyzerService.getAvgMovies();
         return ResponseEntity.ok(result);
     }
     
@@ -47,7 +48,7 @@ public class MovieAnalyzerController {
      */
     @GetMapping("/countries")
     public ResponseEntity<String> getCountries() {
-        String result = movieService.getCountries();
+        String result = moviesAnalyzerService.getCountries();
         return ResponseEntity.ok(result);
     }
 
