@@ -24,3 +24,17 @@ Application for analyzing Netflix data from a CSV file. Provides functionalities
 - Spring Boot REST API
 - Postman Collection
 - Screenshots
+
+## Homework 3 - Spring Boot REST API
+
+### Endpoints Implemented
+
+- `POST /api/v1/movies`
+- `PUT /api/v1/movies`
+- `DELETE /api/v1/movies`
+
+### Contains
+
+- Spring Boot REST API
+- Postman Collection
+- Screenshots
