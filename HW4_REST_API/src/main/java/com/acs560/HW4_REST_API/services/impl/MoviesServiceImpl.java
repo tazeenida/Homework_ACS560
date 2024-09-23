@@ -152,7 +152,6 @@ public class MoviesServiceImpl implements MoviesService {
 	 */
 	@Override
 	public List<Movie> getMoviesByReleaseYearRange(int startYear, int endYear) {
-	    // Validate that startYear is not greater than endYear
 	    if (endYear < startYear) {
 	        throw new IllegalArgumentException("End year must be greater than or equal to start year");
 	    }
