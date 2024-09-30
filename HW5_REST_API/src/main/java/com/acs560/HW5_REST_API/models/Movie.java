@@ -17,6 +17,4 @@ public class Movie {
     private String type;
     private String countries;
     private Integer releaseYear;
-
-    // Additional constructors, validation annotations, etc., can be added as needed
 }
