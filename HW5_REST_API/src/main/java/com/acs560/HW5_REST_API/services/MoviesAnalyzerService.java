@@ -1,4 +1,4 @@
-package com.acs560.HW4_REST_API.services;
+package com.acs560.HW5_REST_API.services;
 
 public interface MoviesAnalyzerService{
 	String getCountMoviesVsTVShows();

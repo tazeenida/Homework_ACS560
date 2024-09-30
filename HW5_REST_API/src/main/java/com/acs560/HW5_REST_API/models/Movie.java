@@ -1,4 +1,4 @@
-package com.acs560.HW4_REST_API.models;
+package com.acs560.HW5_REST_API.models;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -20,7 +20,7 @@ import lombok.ToString;
 @Builder
 @EqualsAndHashCode
 public class Movie {
-
+	private int id;
     private String title;
     private String director;
     private String type;
@@ -30,7 +30,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return String.join(",", title, director, type, countries, String.valueOf(releaseYear));
+        return String.join(",",String.valueOf(id), title, director, type, countries, String.valueOf(releaseYear));
     }
 
 }
