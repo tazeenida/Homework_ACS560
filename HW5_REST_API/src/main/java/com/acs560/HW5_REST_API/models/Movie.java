@@ -1,36 +1,22 @@
 package com.acs560.HW5_REST_API.models;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import java.util.Objects;
-
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Represents a movie with its attributes including title, director, type,
- * release year, and countries.
+ * Represents the Movie model used in the API layer.
  */
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@EqualsAndHashCode
+@Setter
+@ToString
 public class Movie {
-	private int id;
+    private int id;
     private String title;
     private String director;
     private String type;
     private String countries;
-    private int releaseYear;
-    
+    private Integer releaseYear;
 
-    @Override
-    public String toString() {
-        return String.join(",",String.valueOf(id), title, director, type, countries, String.valueOf(releaseYear));
-    }
-
+    // Additional constructors, validation annotations, etc., can be added as needed
 }
