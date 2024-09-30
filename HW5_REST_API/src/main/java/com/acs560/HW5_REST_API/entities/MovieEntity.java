@@ -16,6 +16,8 @@ import lombok.ToString;
 
 /**
  * Represents the Movie entity mapped to the "Movies" table in the database.
+ * This entity contains information about a movie, including its title, director,
+ * type, countries of production, and release year.
  */
 @Entity
 @Table(name = "Movies")
@@ -26,22 +28,43 @@ import lombok.ToString;
 @ToString
 public class MovieEntity {
 
+    /**
+     * The unique identifier for the movie.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /**
+     * The title of the movie.
+     */
     private String title;
+
+    /**
+     * The director of the movie.
+     */
     private String director;
+
+    /**
+     * The type or genre of the movie.
+     */
     private String type;
+
+    /**
+     * The countries where the movie was produced.
+     */
     private String countries;
 
+    /**
+     * The year the movie was released.
+     */
     @Column(name = "releaseyear")
     private Integer releaseYear;
 
     /**
      * Constructor to map from Movie model to MovieEntity.
      *
-     * @param movie the Movie model instance
+     * @param movie the Movie model instance containing the details of the movie
      */
     public MovieEntity(Movie movie) {
         this.id = movie.getId();

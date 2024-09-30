@@ -9,10 +9,14 @@ import com.acs560.HW5_REST_API.repositories.MovieRepository;
 import com.acs560.HW5_REST_API.services.MoviesService;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
- * Implementation of MoviesService interface.
+ * Implementation of the {@link MoviesService} interface.
+ * <p>
+ * This service class handles business logic related to movies,
+ * providing methods to retrieve, add, update, and delete movie data.
+ * It interacts with the {@link MovieRepository} for data access.
+ * </p>
  */
 @Service
 public class MoviesServiceImpl implements MoviesService {
@@ -21,10 +25,10 @@ public class MoviesServiceImpl implements MoviesService {
     private MovieRepository movieRepository;
 
     /**
-     * Retrieves movies by ID.
+     * Retrieves movies from the repository by their ID.
      *
-     * @param id The ID of the movie.
-     * @return List containing the MovieEntity if found.
+     * @param id The ID of the movie to retrieve.
+     * @return List containing the MovieEntity associated with the provided ID.
      */
     @Override
     public List<MovieEntity> getMoviesById(int id) {
@@ -32,9 +36,9 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     /**
-     * Retrieves all movies.
+     * Retrieves all movies from the repository.
      *
-     * @return List of all MovieEntity.
+     * @return List of all MovieEntity objects stored in the repository.
      */
     @Override
     public List<MovieEntity> getMovies() {
@@ -42,10 +46,10 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     /**
-     * Retrieves movies by title.
+     * Retrieves movies by their title.
      *
      * @param title The title to search for.
-     * @return List of MovieEntity matching the title.
+     * @return List of MovieEntity objects matching the specified title.
      */
     @Override
     public List<MovieEntity> getMoviesByTitle(String title) {
@@ -53,10 +57,10 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     /**
-     * Retrieves movies by director.
+     * Retrieves movies by their director.
      *
      * @param director The director to search for.
-     * @return List of MovieEntity matching the director.
+     * @return List of MovieEntity objects directed by the specified director.
      */
     @Override
     public List<MovieEntity> getMoviesByDirector(String director) {
@@ -64,10 +68,10 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     /**
-     * Retrieves movies by type.
+     * Retrieves movies by their type (e.g., Action, Comedy).
      *
      * @param type The type to search for.
-     * @return List of MovieEntity matching the type.
+     * @return List of MovieEntity objects matching the specified type.
      */
     @Override
     public List<MovieEntity> getMoviesByType(String type) {
@@ -75,10 +79,10 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     /**
-     * Retrieves movies by release year.
+     * Retrieves movies by their release year.
      *
      * @param releaseYear The release year to search for.
-     * @return List of MovieEntity matching the release year.
+     * @return List of MovieEntity objects released in the specified year.
      */
     @Override
     public List<MovieEntity> getMoviesByReleaseYear(int releaseYear) {
@@ -86,9 +90,10 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     /**
-     * Adds a new movie.
+     * Adds a new movie to the repository.
      *
-     * @param movie The Movie model to add.
+     * @param movie The Movie model containing details of the movie to add.
+     * @throws IllegalArgumentException if a movie with the same title, director, and release year already exists.
      */
     public void add(Movie movie) {
         List<MovieEntity> existingMovies = movieRepository.findByTitleAndDirectorAndReleaseYear(
@@ -105,11 +110,13 @@ public class MoviesServiceImpl implements MoviesService {
         MovieEntity movieEntity = convertToEntity(movie);
         movieRepository.save(movieEntity);
     }
+
     /**
-     * Updates an existing movie.
+     * Updates an existing movie in the repository.
      *
      * @param id The ID of the movie to update.
      * @param movie The Movie model with updated details.
+     * @throws IllegalArgumentException if no movie with the specified ID exists.
      */
     @Override
     public void update(int id, Movie movie) {
@@ -128,11 +135,11 @@ public class MoviesServiceImpl implements MoviesService {
         movieRepository.save(movieEntity);
     }
 
-
     /**
-     * Deletes a movie by ID.
+     * Deletes a movie from the repository by its ID.
      *
      * @param id The ID of the movie to delete.
+     * @throws IllegalArgumentException if no movie with the specified ID exists.
      */
     @Override
     public void delete(int id) {
@@ -144,10 +151,10 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     /**
-     * Converts a Movie model to MovieEntity.
+     * Converts a Movie model to a MovieEntity.
      *
-     * @param movie The Movie model.
-     * @return The MovieEntity.
+     * @param movie The Movie model to convert.
+     * @return The corresponding MovieEntity.
      */
     private MovieEntity convertToEntity(Movie movie) {
         return new MovieEntity(
@@ -161,10 +168,10 @@ public class MoviesServiceImpl implements MoviesService {
     }
 
     /**
-     * Converts a MovieEntity to Movie model.
+     * Converts a MovieEntity to a Movie model.
      *
-     * @param entity The MovieEntity.
-     * @return The Movie model.
+     * @param entity The MovieEntity to convert.
+     * @return The corresponding Movie model.
      */
     private Movie convertToModel(MovieEntity entity) {
         Movie movie = new Movie();

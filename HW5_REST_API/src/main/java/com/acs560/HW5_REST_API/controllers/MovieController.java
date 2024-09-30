@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 /**
  * REST controller for managing movies.
+ * This controller provides endpoints for CRUD operations on movies, including
+ * retrieval, creation, updating, and deletion of movies in the system.
  */
 @RestController
 @RequestMapping("/api/v1/movies")
@@ -23,22 +25,22 @@ public class MovieController {
     private MoviesService movieService;
 
     /**
-     * Retrieves movies by ID.
-     *
-     * @param id The ID of the movie.
-     * @return ResponseEntity containing the Movie or error status.
+     * Retrieves a movie by its unique ID.
+     * 
+     * @param id The unique ID of the movie to retrieve.
+     * @return ResponseEntity containing the movie if found, or an error status if not.
      */
     @GetMapping("/id/{id}")
     public ResponseEntity<Movie> getMoviesById(@PathVariable int id) {
         List<MovieEntity> entities = movieService.getMoviesById(id);
-        MovieEntity movie = entities.get(0);
+        MovieEntity movie = entities.get(0);  // Assuming only one movie is retrieved by ID.
         return ResponseEntity.ok(convertToModel(movie));
     }
 
     /**
-     * Retrieves all movies.
-     *
-     * @return ResponseEntity containing the list of Movies.
+     * Retrieves all movies from the system.
+     * 
+     * @return ResponseEntity containing the list of all movies.
      */
     @GetMapping
     public ResponseEntity<List<Movie>> getMovies() {
@@ -50,10 +52,10 @@ public class MovieController {
     }
 
     /**
-     * Retrieves movies by title.
-     *
-     * @param title The title to search for.
-     * @return ResponseEntity containing the list of Movies.
+     * Retrieves movies by their title.
+     * 
+     * @param title The title of the movies to search for.
+     * @return ResponseEntity containing the list of movies with the given title.
      */
     @GetMapping("/title/{title}")
     public ResponseEntity<List<Movie>> getMoviesByTitle(@PathVariable String title) {
@@ -65,10 +67,10 @@ public class MovieController {
     }
 
     /**
-     * Retrieves movies by director.
-     *
-     * @param director The director to search for.
-     * @return ResponseEntity containing the list of Movies.
+     * Retrieves movies by the director's name.
+     * 
+     * @param director The director of the movies to search for.
+     * @return ResponseEntity containing the list of movies directed by the given director.
      */
     @GetMapping("/director/{director}")
     public ResponseEntity<List<Movie>> getMoviesByDirector(@PathVariable String director) {
@@ -80,10 +82,10 @@ public class MovieController {
     }
 
     /**
-     * Retrieves movies by type.
-     *
-     * @param type The type to search for.
-     * @return ResponseEntity containing the list of Movies.
+     * Retrieves movies by their type (genre).
+     * 
+     * @param type The type or genre of the movies to search for.
+     * @return ResponseEntity containing the list of movies with the given type.
      */
     @GetMapping("/type/{type}")
     public ResponseEntity<List<Movie>> getMoviesByType(@PathVariable String type) {
@@ -95,10 +97,10 @@ public class MovieController {
     }
 
     /**
-     * Retrieves movies by release year.
-     *
-     * @param releaseYear The release year to search for.
-     * @return ResponseEntity containing the list of Movies.
+     * Retrieves movies by their release year.
+     * 
+     * @param releaseYear The release year of the movies to search for.
+     * @return ResponseEntity containing the list of movies released in the given year.
      */
     @GetMapping("/releaseYear/{releaseYear}")
     public ResponseEntity<List<Movie>> getMoviesByReleaseYear(@PathVariable int releaseYear) {
@@ -110,10 +112,10 @@ public class MovieController {
     }
 
     /**
-     * Adds a new movie.
-     *
-     * @param movie The Movie model to add.
-     * @return ResponseEntity with HTTP status.
+     * Adds a new movie to the system.
+     * 
+     * @param movie The movie details to add.
+     * @return ResponseEntity with HTTP status indicating the result of the operation.
      */
     @PostMapping
     public ResponseEntity<String> addMovie(@RequestBody Movie movie) {
@@ -122,11 +124,11 @@ public class MovieController {
     }
 
     /**
-     * Updates an existing movie.
-     *
-     * @param id    The ID of the movie to update.
-     * @param movie The Movie model with updated details.
-     * @return ResponseEntity with HTTP status.
+     * Updates an existing movie in the system.
+     * 
+     * @param id    The unique ID of the movie to update.
+     * @param movie The movie details to update.
+     * @return ResponseEntity with HTTP status indicating the result of the update.
      */
     @PutMapping("/{id}")
     public ResponseEntity<String> updateMovie(@PathVariable int id, @RequestBody Movie movie) {
@@ -136,10 +138,10 @@ public class MovieController {
     }
 
     /**
-     * Deletes a movie by ID.
-     *
-     * @param id The ID of the movie to delete.
-     * @return ResponseEntity with HTTP status.
+     * Deletes a movie from the system by its ID.
+     * 
+     * @param id The unique ID of the movie to delete.
+     * @return ResponseEntity with HTTP status indicating the result of the deletion.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteMovie(@PathVariable int id) {
@@ -148,10 +150,10 @@ public class MovieController {
     }
 
     /**
-     * Converts MovieEntity to Movie model.
-     *
-     * @param entity The MovieEntity.
-     * @return The Movie model.
+     * Converts a MovieEntity object to a Movie model.
+     * 
+     * @param entity The MovieEntity to convert.
+     * @return The Movie model with corresponding fields.
      */
     private Movie convertToModel(MovieEntity entity) {
         Movie movie = new Movie();
