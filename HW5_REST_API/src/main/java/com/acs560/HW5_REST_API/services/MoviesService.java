@@ -61,49 +61,44 @@ public interface MoviesService {
      */
     public List<MovieEntity> getMoviesByReleaseYear(int releaseYear);
 
-	
 
-//    /**
-//     * Adds a new movie to the repository.
-//     * 
-//     * This method accepts a Movie object and adds it to the repository.
-//     * The movie should include all required fields necessary for its storage.
-//     * 
-//     * @param movie The Movie object to be added. This object should
-//     *              contain the movie's details including title, director, type,
-//     *              countries, and release year.
-//     * @throws MoviesRepositoryManagementException if there is an error adding the movie
-//     *                                             (e.g., if the movie already exists).
-//     */
-//    void add(Movie movie);
-//
-//    /**
-//     * Updates an existing movie in the repository.
-//     * 
-//     * This method accepts a Movie object with updated details and replaces
-//     * the existing movie in the repository with this updated information. The movie
-//     * should have a unique identifier to match the existing record for updating.
-//     * 
-//     * @param movie The Movie object with updated details. The object should
-//     *              include the necessary fields to identify and update the existing
-//     *              movie record in the repository.
-//     * @throws MoviesRepositoryManagementException if there is an error updating the movie
-//     *                                             (e.g., if the movie does not exist).
-//     */
-//    void update(Movie movie);
-//
-//    /**
-//     * Deletes a movie from the repository.
-//     * 
-//     * This method accepts a Movie object and removes the corresponding
-//     * movie record from the repository. The movie should have a unique identifier
-//     * to locate and delete the correct record.
-//     * 
-//     * @param movie The Movie object to be deleted. The object should
-//     *              include sufficient details to identify the movie record to be removed.
-//     * @throws MoviesRepositoryManagementException if there is an error deleting the movie
-//     *                                             (e.g., if the movie does not exist).
-//     */
-//    void delete(Movie movie);
+    /**
+     * Adds a new movie to the repository.
+     * 
+     * This method accepts a Movie object and adds it to the repository.
+     * The movie should include all required fields necessary for its storage.
+     * 
+     * @param movie The Movie object to be added. This object should
+     *              contain the movie's details including title, director, type,
+     *              countries, and release year.
+     * @throws MoviesRepositoryManagementException if there is an error adding the movie
+     *                                             (e.g., if the movie already exists).
+     */
+	void add(Movie movie);
+
+	/**
+	 * Updates an existing movie.
+	 *
+	 * @param id The ID of the movie to update.
+	 * @param movie The Movie model with updated details.
+	 */
+	void update(int id, Movie movie);
+
+    /**
+     * Deletes a movie from the repository.
+     * 
+     * This method accepts a Movie object and removes the corresponding
+     * movie record from the repository. The movie should have a unique identifier
+     * to locate and delete the correct record.
+     * 
+     * @param movie The Movie object to be deleted. The object should
+     *              include sufficient details to identify the movie record to be removed.
+     * @throws MoviesRepositoryManagementException if there is an error deleting the movie
+     *                                             (e.g., if the movie does not exist).
+     */
+
+    void delete(int id);
+
+	
 
 }

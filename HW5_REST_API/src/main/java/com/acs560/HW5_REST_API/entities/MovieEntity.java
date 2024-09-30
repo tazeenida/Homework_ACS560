@@ -20,7 +20,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "Movies")
 @Getter
-@Setter // Allows updating fields
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -34,6 +34,7 @@ public class MovieEntity {
     private String director;
     private String type;
     private String countries;
+
     @Column(name = "releaseyear")
     private Integer releaseYear;
 
@@ -43,7 +44,7 @@ public class MovieEntity {
      * @param movie the Movie model instance
      */
     public MovieEntity(Movie movie) {
-    	this.id = movie.getId();
+        this.id = movie.getId();
         this.title = movie.getTitle();
         this.director = movie.getDirector();
         this.type = movie.getType();
