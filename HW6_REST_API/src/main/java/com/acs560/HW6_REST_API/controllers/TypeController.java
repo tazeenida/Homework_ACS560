@@ -45,6 +45,23 @@ public class TypeController {
         TypeEntity type = typeService.getTypeById(id);
         return ResponseEntity.ok(type);
     }
+    
+    /**
+     * Retrieves a type by its name.
+     *
+     * @param type The name of the type to retrieve.
+     * @return ResponseEntity containing the TypeEntity if found, or an error status if not.
+     */
+    @GetMapping("/type/{type}")
+    public ResponseEntity<TypeEntity> getByType(@PathVariable String type) {
+        try {
+            TypeEntity typeEntity = typeService.getByType(type);
+            return ResponseEntity.ok(typeEntity);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null); // Return 404 if not found
+        }
+    }
 
     /**
      * Adds a new type to the system.

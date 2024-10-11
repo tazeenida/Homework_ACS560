@@ -54,4 +54,6 @@ public interface TypeService {
      * @throws IllegalArgumentException if no type with the specified ID exists.
      */
     void deleteType(int id);
+
+	TypeEntity getByType(String type);
 }

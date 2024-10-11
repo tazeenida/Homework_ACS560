@@ -48,6 +48,12 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Type not found with ID: " + id));
     }
+    
+    @Override
+    public TypeEntity getByType(String type) {
+        return typeRepository.findByType(type)
+                .orElseThrow(() -> new IllegalArgumentException("Type not found with type: " + type));
+    }
 
     /**
      * Adds a new type to the repository.
