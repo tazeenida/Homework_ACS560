@@ -161,9 +161,8 @@ public class MovieController {
         movie.setTitle(entity.getTitle());
         movie.setDirector(entity.getDirector());
         
-        // Get typeId from TypeEntity associated with the MovieEntity
         if (entity.getType() != null) {
-            movie.setTypeId(entity.getType().getTypeId()); // Ensure you're using the TypeEntity's typeId
+            movie.setTypeId(entity.getType().getTypeId());
         }
 
         movie.setCountries(entity.getCountries());

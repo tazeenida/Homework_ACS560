@@ -3,6 +3,15 @@ package com.acs560.HW6_REST_API.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Represents a movie entity in the database.
+ * <p>
+ * This class is mapped to the "movies" table and contains details about the movie,
+ * including its title, director, type, countries of origin, and release year.
+ * It uses Lombok annotations for boilerplate code reduction, such as getters, setters,
+ * and constructors.
+ * </p>
+ */
 @Entity
 @Table(name = "movies")
 @Getter
@@ -13,22 +22,40 @@ import lombok.*;
 @EqualsAndHashCode
 public class MovieEntity {
 
+    /**
+     * The unique identifier for the movie.
+     */
     @Id
     private Integer id;
 
+    /**
+     * The title of the movie. This field is mandatory.
+     */
     @Column(nullable = false)
     private String title;
 
+    /**
+     * The director of the movie. This field is optional.
+     */
     @Column(nullable = true)
     private String director;
 
-    @ManyToOne // or @OneToMany, depending on your design
-    @JoinColumn(name = "type_id") // Ensure the correct foreign key column name
+    /**
+     * The type of the movie. This field is a many-to-one relationship with {@link TypeEntity}.
+     */
+    @ManyToOne 
+    @JoinColumn(name = "type_id")
     private TypeEntity type;
 
+    /**
+     * The countries where the movie was produced. This field is optional.
+     */
     @Column(nullable = true)
     private String countries;
 
+    /**
+     * The release year of the movie. This field is optional.
+     */
     @Column(name = "release_year", nullable = true)
     private Integer releaseYear;
 

@@ -7,322 +7,482 @@
 	},
 	"item": [
 		{
-			"name": "POST.PUT,DEL",
+			"name": "Movies",
 			"item": [
 				{
-					"name": "Add Movie -200",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"The Shawshank Redemption\",\r\n    \"director\": null,\r\n    \"releaseYear\": 1994,\r\n    \"countries\": \"United States\",\r\n    \"typeId\": 2\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "POST.PUT,DEL Movies",
+					"item": [
+						{
+							"name": "Add Movie -200",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"The Shawshank Redemption\",\r\n    \"director\": null,\r\n    \"releaseYear\": 1994,\r\n    \"countries\": \"United States\",\r\n    \"typeId\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/movies",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"movies"
-							]
+						{
+							"name": "GetByTitle",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/title/The Shawshank Redemption",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"title",
+										"The Shawshank Redemption"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Movie - 200",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"The Shawshank Redemption\",\r\n    \"director\": \"Frank Darabont\",\r\n    \"releaseYear\": 1994,\r\n    \"countries\": \"United States\",\r\n    \"typeId\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/{id}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Movie-400",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Dick Johnson Is Dead\",\r\n    \"director\": \"Kirsten Johnson\",\r\n    \"type\": \"Movie\",\r\n    \"releaseYear\": 2010,\r\n    \"countries\": \"United States\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/8810",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"8810"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Movie -400",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Dick Johnson Is Dead\",\r\n    \"director\": \"Kirsten\",\r\n    \"type\": \"Movie\",\r\n    \"countries\": \"United States\",\r\n    \"releaseYear\": 2010\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/9810",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"9810"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Movie -200",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Dick Johnson Is Dead\",\r\n    \"director\": \"Kirsten\",\r\n    \"type\": \"Movie\",\r\n    \"countries\": \"United States\",\r\n    \"releaseYear\": 2010\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"0"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "GetByTitle",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/movies/title/The Shawshank Redemption",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"movies",
-								"title",
-								"The Shawshank Redemption"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Movie - 200",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"The Shawshank Redemption\",\r\n    \"director\": \"Frank Darabont\",\r\n    \"releaseYear\": 1994,\r\n    \"countries\": \"United States\",\r\n    \"typeId\": 2\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "GET Movies",
+					"item": [
+						{
+							"name": "GetByDirector",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/director/Daniel Sandu",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"director",
+										"Daniel Sandu"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/movies/{id}",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"movies",
-								"{id}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Movie-400",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Dick Johnson Is Dead\",\r\n    \"director\": \"Kirsten Johnson\",\r\n    \"type\": \"Movie\",\r\n    \"releaseYear\": 2010,\r\n    \"countries\": \"United States\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "All Movies",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/movies/8810",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"movies",
-								"8810"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Movie -400",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Dick Johnson Is Dead\",\r\n    \"director\": \"Kirsten\",\r\n    \"type\": \"Movie\",\r\n    \"countries\": \"United States\",\r\n    \"releaseYear\": 2010\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "get Movie by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/id/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"id",
+										"1"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/movies/9810",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"movies",
-								"9810"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Movie -200",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Dick Johnson Is Dead\",\r\n    \"director\": \"Kirsten\",\r\n    \"type\": \"Movie\",\r\n    \"countries\": \"United States\",\r\n    \"releaseYear\": 2010\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "GetByTitle",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/title/Ganglands",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"title",
+										"Ganglands"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/movies/{id}",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"movies",
-								"{id}"
-							]
+						{
+							"name": "GetByreleaseYear",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/releaseYear/2010",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"releaseYear",
+										"2010"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByType",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/movies/type/Movie",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"type",
+										"Movie"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
 		{
-			"name": "All Movies",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/movies",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"movies"
+			"name": "Type",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "All types",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/types",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "All types by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/types/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"types",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST.PUT,DEL Type",
+					"item": [
+						{
+							"name": "Add Type",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"typeId\": 3,\r\n    \"type\": \"Comic\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/types",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "type",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"typeId\": 3,\r\n    \"type\": \"Comic\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/types/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"types",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Type",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"Movies\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/types/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"types",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "get Movie by id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/movies/id/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"movies",
-						"id",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetByTitle",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/movies/title/Ganglands",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"movies",
-						"title",
-						"Ganglands"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetByDirector",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/movies/director/Daniel Sandu",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"movies",
-						"director",
-						"Daniel Sandu"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetByType",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/movies/type/Movie",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"movies",
-						"type",
-						"Movie"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetByreleaseYear",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/movies/releaseYear/2010",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"movies",
-						"releaseYear",
-						"2010"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }
