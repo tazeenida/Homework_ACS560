@@ -29,5 +29,5 @@ public interface TypeRepository extends CrudRepository<TypeEntity, Integer> {
      * @param typeName The name of the type to retrieve.
      * @return Optional<TypeEntity> containing the TypeEntity associated with the provided type name.
      */
-    Optional<TypeEntity> findByType(String type); // New method to find by type name
+    Optional<TypeEntity> findByType(String type);
 }
