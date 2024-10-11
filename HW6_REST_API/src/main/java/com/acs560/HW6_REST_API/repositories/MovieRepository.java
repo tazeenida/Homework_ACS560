@@ -3,6 +3,7 @@ package com.acs560.HW6_REST_API.repositories;
 import java.util.List;
 
 import com.acs560.HW6_REST_API.entities.MovieEntity;
+import com.acs560.HW6_REST_API.entities.TypeEntity;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -63,7 +64,8 @@ public interface MovieRepository extends CrudRepository<MovieEntity, Integer> {
      * @param type The type of the movies to search for.
      * @return List of MovieEntity objects that match the specified type.
      */
-    List<MovieEntity> findByType(String type);
+    List<MovieEntity> findByType(TypeEntity type);
+
     
     /**
      * Finds movies by title, director, and release year.
