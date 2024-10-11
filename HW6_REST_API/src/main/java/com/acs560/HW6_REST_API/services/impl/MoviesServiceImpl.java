@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acs560.HW6_REST_API.entities.MovieEntity;
+import com.acs560.HW6_REST_API.entities.TypeEntity;
 import com.acs560.HW6_REST_API.models.Movie;
 import com.acs560.HW6_REST_API.repositories.MovieRepository;
+import com.acs560.HW6_REST_API.repositories.TypeRepository;
 import com.acs560.HW6_REST_API.services.MoviesService;
 
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
  * <p>
  * This service class handles business logic related to movies,
  * providing methods to retrieve, add, update, and delete movie data.
- * It interacts with the {@link MovieRepository} for data access.
+ * It interacts with the {@link MovieRepository} and {@link TypeRepository} for data access.
  * </p>
  */
 @Service
@@ -23,6 +25,9 @@ public class MoviesServiceImpl implements MoviesService {
 
     @Autowired
     private MovieRepository movieRepository;
+
+    @Autowired
+    private TypeRepository typeRepository;
 
     /**
      * Retrieves movies from the repository by their ID.
@@ -75,8 +80,11 @@ public class MoviesServiceImpl implements MoviesService {
      */
     @Override
     public List<MovieEntity> getMoviesByType(String type) {
-        return movieRepository.findByType(type);
+        TypeEntity typeEntity = typeRepository.findByType(type)
+            .orElseThrow(() -> new IllegalArgumentException("Type not found: " + type));
+        return movieRepository.findByType(typeEntity);
     }
+
 
     /**
      * Retrieves movies by their release year.
@@ -93,7 +101,7 @@ public class MoviesServiceImpl implements MoviesService {
      * Adds a new movie to the repository.
      *
      * @param movie The Movie model containing details of the movie to add.
-     * @throws IllegalArgumentException if a movie with the same title, director, and release year already exists.
+     * @throws IllegalArgumentException if a movie with the same title, director, and release year already exists or if the typeId is invalid.
      */
     public void add(Movie movie) {
         List<MovieEntity> existingMovies = movieRepository.findByTitleAndDirectorAndReleaseYear(
@@ -116,7 +124,7 @@ public class MoviesServiceImpl implements MoviesService {
      *
      * @param id The ID of the movie to update.
      * @param movie The Movie model with updated details.
-     * @throws IllegalArgumentException if no movie with the specified ID exists.
+     * @throws IllegalArgumentException if no movie with the specified ID exists or if the typeId is invalid.
      */
     @Override
     public void update(int id, Movie movie) {
@@ -155,17 +163,25 @@ public class MoviesServiceImpl implements MoviesService {
      *
      * @param movie The Movie model to convert.
      * @return The corresponding MovieEntity.
+     * @throws IllegalArgumentException if the typeId does not correspond to an existing TypeEntity.
      */
     private MovieEntity convertToEntity(Movie movie) {
-        return new MovieEntity(
-                movie.getId(),
-                movie.getTitle(),
-                movie.getDirector(),
-                movie.getType(),
-                movie.getCountries(),
-                movie.getReleaseYear()
-        );
+        // Fetch the TypeEntity based on typeId
+        TypeEntity typeEntity = typeRepository.findById(movie.getTypeId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid typeId: " + movie.getTypeId()));
+
+        // Create a new MovieEntity and set its fields
+        MovieEntity movieEntity = new MovieEntity();
+        movieEntity.setId(movie.getId());
+        movieEntity.setTitle(movie.getTitle());
+        movieEntity.setDirector(movie.getDirector());
+        movieEntity.setType(typeEntity);
+        movieEntity.setCountries(movie.getCountries());
+        movieEntity.setReleaseYear(movie.getReleaseYear());
+
+        return movieEntity;
     }
+
 
     /**
      * Converts a MovieEntity to a Movie model.
@@ -178,9 +194,15 @@ public class MoviesServiceImpl implements MoviesService {
         movie.setId(entity.getId());
         movie.setTitle(entity.getTitle());
         movie.setDirector(entity.getDirector());
-        movie.setType(entity.getType());
+        
+        // Get typeId from TypeEntity associated with the MovieEntity
+        if (entity.getType() != null) {
+            movie.setTypeId(entity.getType().getTypeId()); // Ensure you're using the TypeEntity's typeId
+        }
+
         movie.setCountries(entity.getCountries());
         movie.setReleaseYear(entity.getReleaseYear());
         return movie;
     }
+
 }

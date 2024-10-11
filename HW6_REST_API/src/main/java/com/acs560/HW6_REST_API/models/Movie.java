@@ -1,21 +1,29 @@
 package com.acs560.HW6_REST_API.models;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.acs560.HW6_REST_API.entities.TypeEntity;
+import lombok.*;
 
-/**
- * Represents the Movie model used in the API layer.
- */
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class Movie {
     private int id;
     private String title;
     private String director;
-    private String type;
+    private int releaseYear;
     private String countries;
-    private Integer releaseYear;
+    private int typeId;
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+		
+	}
 
 }
+
