@@ -1,0 +1,18 @@
+{
+  "productionMode": false,
+  "eagerServerLoad": false,
+  "npmFolder": "C:\\Users\\nidat_34k7o9d\\Workspace-Fall-2024\\SE\\Homework_ACS560\\Movie_Analyzer_Vaadin",
+  "node.version": "v20.15.0",
+  "node.download.root": "https://nodejs.org/dist/",
+  "frontendFolder": "C:\\Users\\nidat_34k7o9d\\Workspace-Fall-2024\\SE\\Homework_ACS560\\Movie_Analyzer_Vaadin\\src\\main\\frontend",
+  "connect.javaSourceFolder": "C:\\Users\\nidat_34k7o9d\\Workspace-Fall-2024\\SE\\Homework_ACS560\\Movie_Analyzer_Vaadin\\src\\main\\java",
+  "javaResourceFolder": "C:\\Users\\nidat_34k7o9d\\Workspace-Fall-2024\\SE\\Homework_ACS560\\Movie_Analyzer_Vaadin\\src\\main\\resources",
+  "connect.applicationProperties": "C:\\Users\\nidat_34k7o9d\\Workspace-Fall-2024\\SE\\Homework_ACS560\\Movie_Analyzer_Vaadin\\src\\main\\resources\\application.properties",
+  "connect.openApiFile": "C:\\Users\\nidat_34k7o9d\\Workspace-Fall-2024\\SE\\Homework_ACS560\\Movie_Analyzer_Vaadin\\target\\generated-resources\\openapi.json",
+  "project.frontend.generated": "C:\\Users\\nidat_34k7o9d\\Workspace-Fall-2024\\SE\\Homework_ACS560\\Movie_Analyzer_Vaadin\\src\\main\\frontend\\generated",
+  "pnpm.enable": false,
+  "bun.enable": false,
+  "require.home.node": false,
+  "build.folder": "target",
+  "react.enable": true
+}
