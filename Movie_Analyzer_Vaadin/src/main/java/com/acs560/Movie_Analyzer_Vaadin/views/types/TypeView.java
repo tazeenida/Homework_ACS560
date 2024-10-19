@@ -18,6 +18,7 @@ import com.vaadin.flow.spring.annotation.SpringComponent;
 import jakarta.annotation.security.PermitAll;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.context.annotation.Scope;
 
@@ -34,7 +35,9 @@ public class TypeView extends VerticalLayout {
 
     private final TypeService typeService;  
     private final Grid<Type> grid = new Grid<>(Type.class);
-    private final TextField typeNameField = new TextField("Type Name"); 
+    private final TextField typeNameField = new TextField("Type Name");
+    private final TextField filterField = new TextField("Filter by Type Name");
+    
     private Type currentType;
 
     /**
@@ -46,8 +49,35 @@ public class TypeView extends VerticalLayout {
     public TypeView(TypeService typeService) {
         this.typeService = typeService;
         configureGrid();
-        add(typeNameField, createButtons(), grid);
+        add(createFilterLayout(), typeNameField, createButtons(), grid);
         updateList();
+    }
+
+    /**
+     * Creates a horizontal layout containing the filter field.
+     *
+     * @return A HorizontalLayout containing the filter text field.
+     */
+    private HorizontalLayout createFilterLayout() {
+        filterField.setPlaceholder("Filter by Type Name...");
+        filterField.addValueChangeListener(event -> filterTypes());
+        return new HorizontalLayout(filterField);
+    }
+
+    /**
+     * Filters the types displayed in the grid based on the input in the filter field.
+     */
+    private void filterTypes() {
+        String filterText = filterField.getValue().toLowerCase();
+        List<TypeEntity> types = typeService.getAllTypes();
+        
+        // Filter the types based on the filter text
+        List<TypeEntity> filteredTypes = types.stream()
+            .filter(typeEntity -> typeEntity.getType() != null && 
+                typeEntity.getType().toLowerCase().contains(filterText))
+            .collect(Collectors.toList());
+
+        grid.setItems(filteredTypes.stream().map(Type::new).toList());
     }
 
     /**
