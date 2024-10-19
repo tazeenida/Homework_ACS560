@@ -71,7 +71,6 @@ public class TypeView extends VerticalLayout {
         String filterText = filterField.getValue().toLowerCase();
         List<TypeEntity> types = typeService.getAllTypes();
         
-        // Filter the types based on the filter text
         List<TypeEntity> filteredTypes = types.stream()
             .filter(typeEntity -> typeEntity.getType() != null && 
                 typeEntity.getType().toLowerCase().contains(filterText))

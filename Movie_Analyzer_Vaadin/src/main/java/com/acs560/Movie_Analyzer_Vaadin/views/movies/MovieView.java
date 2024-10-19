@@ -59,7 +59,6 @@ public class MovieView extends VerticalLayout {
         this.moviesService = moviesService;
         configureGrid();
         
-        // Create a layout for filtering and main content
         HorizontalLayout mainLayout = new HorizontalLayout(createFilterPanel(), createContentLayout());
         mainLayout.setSizeFull();
         
@@ -105,7 +104,7 @@ public class MovieView extends VerticalLayout {
             filterButton
         );
         filterLayout.setSpacing(true);
-        filterLayout.setWidth("300px"); // Set a width for the filter panel
+        filterLayout.setWidth("300px");
         return filterLayout;
     }
 
@@ -134,12 +133,10 @@ public class MovieView extends VerticalLayout {
                 boolean matchesCountries = filterCountriesField.isEmpty() || 
                     (movie.getCountries() != null && movie.getCountries().toLowerCase().contains(filterCountriesField.getValue().toLowerCase().trim()));
 
-                // Return true if all of the filters match
                 return matchesTitle && matchesDirector && matchesYear && matchesTypeId && matchesCountries;
             })
             .collect(Collectors.toList());
 
-        // Update the grid with the filtered list
         grid.setItems(filteredMovies);
     }
 
