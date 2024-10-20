@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @SpringComponent
 @Scope("prototype")
 @PermitAll
-@Route(value = "movies", layout = MainLayout.class)
+@Route(value = "", layout = MainLayout.class)
 @PageTitle("Movies | Movies Analyzer")
 public class MovieView extends VerticalLayout {
 
