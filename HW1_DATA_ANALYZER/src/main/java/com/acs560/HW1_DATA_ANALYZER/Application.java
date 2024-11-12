@@ -18,10 +18,10 @@ import com.opencsv.CSVReaderBuilder;
  */
 
 public class Application {
-	private static final String FILE_NAME = "netflix_data.csv";
-	private static final String COUNT_FILE = "count_movies_vs_tv_shows.txt";
-	private static final String AVG_FILE = "average_movies_per_year.txt";
-	private static final String COUNTRIES_FILE = "unique_countries_counts.txt";
+	static final String FILE_NAME = "netflix_data.csv";
+	static final String COUNT_FILE = "count_movies_vs_tv_shows.txt";
+    static final String AVG_FILE = "average_movies_per_year.txt";
+	static final String COUNTRIES_FILE = "unique_countries_counts.txt";
 
 	/**
 	 * Provides a menu to the user for different analysis options and executes the
@@ -80,7 +80,7 @@ public class Application {
 	 *                type of media is expected to be in column index 1.
 	 */
 
-	private static void countMoviesVsTVShows(List<String[]> allData) {
+	public static void countMoviesVsTVShows(List<String[]> allData) {
 		int movieCount = 0;
 		int tvShowCount = 0;
 
@@ -161,10 +161,6 @@ public class Application {
 				}
 			}
 		}
-		System.out.println("Unique Countries and their Counts:");
-		for (Map.Entry<String, Integer> entry : countryCounts.entrySet()) {
-			System.out.println(entry.getKey() + ": " + entry.getValue());
-		}
 
 		StringBuilder textResult = new StringBuilder("=== Unique Countries and their Counts ===\n");
 		textResult.append(String.format("%-25s %s%n", "Country", "Count")); // Header
@@ -203,7 +199,7 @@ public class Application {
 	 * @param fileName The name of the file to which the content will be written.
 	 * @param content  The content to be written to the file.
 	 */
-	private static void writeToTextFile(String fileName, String content) {
+	static void writeToTextFile(String fileName, String content) {
 		try (FileWriter writer = new FileWriter(fileName)) {
 			writer.write(content);
 			System.out.println("Results written to " + fileName + "\n");
