@@ -2,7 +2,9 @@ package com.acs560.Movie_Analyzer_Vaadin.views.movies;
 
 import com.acs560.Movie_Analyzer_Vaadin.entities.MovieEntity;
 import com.acs560.Movie_Analyzer_Vaadin.models.Movie;
+import com.acs560.Movie_Analyzer_Vaadin.security.SecurityService;
 import com.acs560.Movie_Analyzer_Vaadin.services.MoviesService;
+import com.acs560.Movie_Analyzer_Vaadin.views.LoginView;
 import com.acs560.Movie_Analyzer_Vaadin.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -11,6 +13,8 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -33,7 +37,9 @@ import java.util.stream.Collectors;
 @PermitAll
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Movies | Movies Analyzer")
-public class MovieView extends VerticalLayout {
+public class MovieView extends VerticalLayout implements BeforeEnterObserver {
+	@Autowired
+    private SecurityService securityService;  // Autowire the SecurityService
 
     private final MoviesService moviesService;
     private final Grid<MovieEntity> grid = new Grid<>(MovieEntity.class);
@@ -49,11 +55,6 @@ public class MovieView extends VerticalLayout {
     private final TextField filterTypeIdField = new TextField();
     private final TextField filterCountriesField = new TextField();
 
-    /**
-     * Constructs a new {@code MovieView} instance.
-     * 
-     * @param moviesService the service used to manage movies
-     */
     @Autowired
     public MovieView(MoviesService moviesService) {
         this.moviesService = moviesService;
@@ -64,6 +65,16 @@ public class MovieView extends VerticalLayout {
         
         add(mainLayout);
         refreshGrid();
+    }
+    /**
+     * Implementing the beforeEnter method from BeforeEnterObserver interface
+     */
+    @Override
+    public void beforeEnter(BeforeEnterEvent event) {
+        // Check if the user is authenticated, if not, redirect to login page
+        if (securityService.getAuthenticatedUser() == null) {
+            event.rerouteTo(LoginView.class);  // Redirect to login if not authenticated
+        }
     }
 
     /**

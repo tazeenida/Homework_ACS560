@@ -22,49 +22,50 @@ import com.vaadin.flow.theme.lumo.LumoUtility;
 public class MainLayout extends AppLayout {
 
 	private static final long serialVersionUID = -5291741451913578403L;
-	
+
 	@Autowired
-    private final SecurityService securityService;
+	private final SecurityService securityService;
 
 	/**
-	 * Constructor
+	 * Constructs a new instance of {@link MainLayout}. Initializes the layout and
+	 * sets up the header and navigation drawer.
+	 *
+	 * @param securityService the {@link SecurityService} used for user
+	 *                        authentication and logout
 	 */
 	public MainLayout(SecurityService securityService) {
 		this.securityService = securityService;
-        createHeader();
-        createDrawer();
-    }
+		createHeader();
+		createDrawer();
+	}
 
-    private void createHeader() {
+	private void createHeader() {
         H1 logo = new H1("Movie Analyzer");
-        logo.addClassNames(
-            LumoUtility.FontSize.LARGE,
-            LumoUtility.Margin.MEDIUM);
+        logo.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.MEDIUM);
         
-        String u = securityService.getAuthenticatedUser().getUsername();
-        Button logout = new Button("Log out " + u, e -> securityService.logout());
+        String username = securityService.getAuthenticatedUser() != null ?
+                securityService.getAuthenticatedUser().getUsername() : "user"; // Default to "Guest" if not authenticated
 
+        Button logout = new Button("Log out " + username, e -> securityService.logout());
+        
         var header = new HorizontalLayout(new DrawerToggle(), logo, logout);
-
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         header.expand(logo);
         header.setWidthFull();
-        header.addClassNames(
-            LumoUtility.Padding.Vertical.NONE,
-            LumoUtility.Padding.Horizontal.MEDIUM);
-
-        addToNavbar(header); 
-    }
-
-    /**
-     * Create the drawer
-     */
-    private void createDrawer() {
-    	RouterLink MoviesLink = new RouterLink("Movies", MovieView.class);
-    	MoviesLink.setHighlightCondition(HighlightConditions.sameLocation());
-    	
-        RouterLink TypeLink = new RouterLink("Type", TypeView.class);
+        header.addClassNames(LumoUtility.Padding.Vertical.NONE, LumoUtility.Padding.Horizontal.MEDIUM);
         
-        addToDrawer(new VerticalLayout(MoviesLink, TypeLink));
+        addToNavbar(header);
     }
+
+	/**
+	 * Create the drawer
+	 */
+	private void createDrawer() {
+		RouterLink MoviesLink = new RouterLink("Movies", MovieView.class);
+		MoviesLink.setHighlightCondition(HighlightConditions.sameLocation());
+
+		RouterLink TypeLink = new RouterLink("Type", TypeView.class);
+
+		addToDrawer(new VerticalLayout(MoviesLink, TypeLink));
+	}
 }
